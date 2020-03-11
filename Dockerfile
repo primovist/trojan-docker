@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM alpine AS builder
 WORKDIR /root
 RUN set -ex \
 	&& VERSION="v1.14.1" \
@@ -9,7 +9,7 @@ RUN set -ex \
 	&& make \
 	&& strip -s trojan
 
-FROM alpine:latest
+FROM alpine
 LABEL maintainer="Primovist"
 
 RUN set -ex \
