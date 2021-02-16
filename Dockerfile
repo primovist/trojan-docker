@@ -1,7 +1,7 @@
 FROM alpine AS builder
 WORKDIR /root
 RUN set -ex \
-	&& VERSION="v1.16.0" \
+	&& VERSION="$(wget --no-check-certificate -qO- https://api.github.com/repos/trojan-gfw/trojan/tags | grep 'name' | cut -d\" -f4 | head -1)" \
 	&& apk add --no-cache git build-base make cmake boost-dev openssl-dev mariadb-connector-c-dev \
 	&& git clone --branch ${VERSION} --single-branch https://github.com/trojan-gfw/trojan.git \
 	&& cd trojan \
